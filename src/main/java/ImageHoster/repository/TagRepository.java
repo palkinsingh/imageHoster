@@ -9,11 +9,13 @@ import javax.persistence.*;
 public class TagRepository {
     @PersistenceUnit(unitName = "imageHoster")
     private EntityManagerFactory emf;
-
+    //
     public Tag createTag(Tag tag) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
 
+        //The try and catch method will remove the exceptions without yelling at the user.
+        //If there is and exception it will rollback.
         try {
             transaction.begin();
             em.persist(tag);
@@ -22,8 +24,10 @@ public class TagRepository {
             transaction.rollback();
         }
         return tag;
+        //Will return the new value
     }
 
+    //Calling methods in the main class.
     public Tag findTag(String tagName) {
         EntityManager em = emf.createEntityManager();
         try {
