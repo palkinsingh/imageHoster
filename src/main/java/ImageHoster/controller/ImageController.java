@@ -21,12 +21,12 @@ import org.springframework.web.multipart.MultipartFile;
 public class ImageController {
 
     @Autowired
-    private ImageService imageService;
+    private ImageService imageService;//Private class
 
     @Autowired
     private TagService tagService;
 
-    //This method displays all the images in the user home page after successful login
+
     @RequestMapping("images")
     public String getUserImages(Model model) {
         List<Image> images = imageService.getAllImages();
@@ -44,8 +44,6 @@ public class ImageController {
         return "images/image";
     }
 
-    //This controller method is called when the request pattern is of type 'images/upload'
-    //The method returns 'images/upload.html' file
     @RequestMapping("/images/upload")
     public String newImage() {
         return "images/upload";
@@ -77,6 +75,7 @@ public class ImageController {
             model.addAttribute("image", image);
             model.addAttribute("tags", image.getTags());
             //model.addAttribute("comments", image.getComments());
+            //Model.addAttribute
             return "images/image";
 
         } else {
